@@ -11,9 +11,11 @@ content = None
 INFO_FILEPATH    = "info.json"
 TEMPLATE_PREVIEW = "preview-template.html"
 TEMPLATE_PRINT   = "print-template.html"
+TEMPLATE_TEXT    = "text-template.html"
 
 OUTPUT_PREVIEW = "build/preview.html"
 OUTPUT_PRINT   = "build/print.html"
+OUTPUT_TEXT   = "build/cv.md"
 
 def LoadInfo(path):
     try:
@@ -55,11 +57,11 @@ def CreateFromTemplate(template, info, dest):
         print("Cannot write output file:", e)
 
 
-
 info = LoadInfo(INFO_FILEPATH)
 if info == None:
     exit(1)
 
 CreateFromTemplate(TEMPLATE_PREVIEW, info, OUTPUT_PREVIEW)
 CreateFromTemplate(TEMPLATE_PRINT, info, OUTPUT_PRINT)
+CreateFromTemplate(TEMPLATE_TEXT, info, OUTPUT_TEXT)
 print("done at ", datetime.datetime.now().strftime('%H:%M:%S'))

@@ -1,0 +1,50 @@
+# Informations
+
+name: {{ info.name }}
+mail: {{ info.mail }}
+phone: {{ info.phone }}
+country: {{ info.country }}
+
+summary: {{ info.introduction | replace("<br>", " ") }}
+
+## Websites
+
+{% for w in info.websites %}
+- {{ w.name }} - {{ w.url }}
+{% endfor %}
+
+# Work experience
+
+{% for e in info.experiences %}
+## {{ e.title }}
+date: {{ e.date }}
+
+{% if e.location != "" %}
+location: {{ e.location }}
+{% endif %}
+
+{{ e.description | replace("<br>", " ")}}
+{% endfor %}
+
+# Personal Projects
+
+{% for p in info.projects %}
+- {{ p.date }} | {{ p.description | replace("<br>", " ")}}
+{% endfor %}
+
+# Education
+{% for e in info.education %}
+- {{ e.description }}
+   date: {{ e.date }}
+{% endfor %}
+
+# Languages
+{% for l in info.languages %}
+- {{ l.name }} - {{ l.level }}
+{% endfor %}
+
+# Hobbies and Volunteering
+
+{% for h in info.hobbies %}
+- {{ h }}
+{% endfor %}
