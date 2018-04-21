@@ -1,0 +1,229 @@
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+<style>
+    .main {
+            font-family:'Roboto';
+            font-weight:100;
+    }
+
+    .col {
+        box-sizing:border-box;
+        display:flex;
+        flex-direction:column;
+        margin-bottom:0px;
+        margin:0px;
+        padding:0px;
+        text-align:left;
+        vertical-align:middle;
+        white-space:nowrap;
+    }
+
+    .group {
+        box-sizing:border-box;
+        display:flex;
+        flex-direction:row;
+        margin:0px;
+        padding:0px;
+        vertical-align:middle;
+        white-space:nowrap;
+        width:100%;
+    }
+
+    .category {
+        margin-top:5mm;
+    }
+
+    .personnal-info {
+        width:10cm;
+        text-align:left;
+    }
+
+    .website {
+        text-align:right;
+    }
+
+    h1 {
+        font-size:24pt;
+        font-weight:500;
+        padding:0;
+        margin:0;
+    }
+
+    h2 {
+        font-size:15pt;
+        font-weight:400;
+        padding:0;
+        margin:0;
+        text-transform:uppercase;
+    }
+
+    h3 {
+        display:inline-block;
+        font-size:11pt;
+        font-weight:600;
+        margin:0;
+        padding:0;
+    }
+
+    h4 {
+        font-size:12pt;
+        font-weight:400;
+        padding:0;
+        margin:0;
+    }
+
+    h5 {
+        font-size:11pt;
+        font-weight:300;
+        display:block;
+        margin:0;
+        padding:0;
+    }
+
+    hr {
+        background-color:#000;
+        border:0;
+        display:block;
+        height:0px;
+        margin:0mm;
+        border:solid 1px #000;
+        padding:0;
+        width:100%;
+        margin-bottom:1mm;
+    }
+
+    span {
+        font-size:10pt;
+        padding:0;
+        margin:0;
+        padding-top:1mm;
+    }
+
+    p {
+        padding:0;
+        margin:0;
+        white-space:pre-line;
+    }
+
+    .date {
+        display:inline-block;
+        width:3cm;
+    }
+
+    .description {
+        display:block;
+        width:18cm;
+    }
+
+    th {
+        font-weight:100;
+        font-size:10pt;
+        margin:0;
+        padding:0;
+        line-height:9pt;
+    }
+</style>
+<div class="main">
+    <! -- HEADER -->
+    <div class="col">
+        <div class="group" style="">
+            <div class="col" style="width:68%;">
+                <div class="personnal-info">
+                    <h1>{{ info.name }}</h1>
+                    <h4>{{ info.mail }}</h4>
+                    <h4>{{ info.phone }}</h4>
+                    <h5>{{ info.country }}</h5>
+                </div>
+            </div>
+            <div class="col" style="width:29%;padding-top:1mm;">
+                <table class="website">
+                    {% for e in info.websites %}
+                        <tr>
+                            <th>{{ e.name }}:</th>
+                            <th style="padding-left:2mm;">{{ e.url }}</th>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <! -- SUMMARY -->
+    <div class="col" style="text-align:center;">
+        <p style="font-size:11pt;">{{ info.introduction }}</p>
+        <p style="font-weight:800;">{{ info.position }}</p>
+    </div>
+
+    <! -- PAST EXPERIENCES -->
+    <div class="col category" style="margin-top:5mm;">
+        <div style="width:100%">
+            <h2 style="display:inline-block;vertical-align:middle;">work experience</h2>
+            <p style="display:inline-block;font-size:10pt;"> - references available upon request</p>
+            <hr>
+
+            <!-- Start experiences -->
+            {% for e in info.experiences %}
+                <div class="group" style="margin-bottom:2mm;">
+                    <span class="date" style="width:4cm;">{{ e.date }}</span>
+                    <span class="description">
+                        <h3>{{ e.title }}</h3>
+                        {% if e.location != "" %}
+                            - {{ e.location }}
+                        {% endif %}
+                        <p style="margin-top:1mm;">{{ e.description }}</p>
+                    </span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <! -- PERSONAL PROJECTS -->
+    <div class="col category">
+        <div style="width:100%">
+            <h2>personal projects</h2>
+            <hr>
+
+            {% for e in info.projects %}
+                <div class="group">
+                    <span class="date" style="width:2.8cm;">{{ e.date }}</span>
+                    <span class="description">{{ e.description }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <! -- EDUCATION & LANGUAGES -->
+    <div class="group category">
+        <div style="width:56%;margin-right:3%;">
+            <h2>Education</h2>
+            <hr>
+            {% for e in info.education %}
+                <span class="date" style="width:2.2cm">{{ e.date }}</span>
+                <span>{{ e.description }}</span><br>
+            {% endfor %}
+        </div>
+        <div style="width:41%;">
+            <h2>Languages</h2>
+            <hr>
+            {% for e in info.languages %}
+                <span style="line-height:16pt;">
+                    {{ e.name }} - {{ e.level }}
+                </span><br>
+            {% endfor %}
+        </div>
+    </div>
+
+    <! -- HOBBIES & VOLUNTEERING -->
+    <div class="col category">
+        <div style="width:100%">
+            <h2>hobbies & volunteering</h2>
+            <hr>
+
+            {% for e in info.hobbies %}
+                <div class="group">
+                    <span class="description">- {{ e }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

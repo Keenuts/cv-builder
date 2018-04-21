@@ -1,0 +1,107 @@
+{
+    "name": "John Smith",
+    "mail": "john@smith.gov.fr",
+    "phone": "+33 6 00 00 00 00",
+    "country": "France",
+    "position": "SAMPLE POSITION NAME",
+    "introduction": "Computer Engineer Student<br>6 month internship from September 2050",
+    "websites": [
+        {
+            "name": "LinkedIn",
+            "url": "linkedin.com/in/johnsmith"
+        },
+        {
+            "name": "GitHub",
+            "url": "www.github.com/johnsmith"
+        },
+        {
+            "name": "Blog",
+            "url": "www.johnsmith.com/blog"
+        }
+    ],
+    "experiences": [
+        {
+            "date": "01/2017 - Now",
+            "title": "Software engineer at Freedesktop",
+            "location": "France",
+            "description": "Added more than 1000 different features in Systemd. Now, this binary can brew some tea, walk my dog, fetch the mail while initializing my distribution."
+        },
+        {
+            "date": "01/2018 - 07/2018",
+            "title": "Teacher at SuperSecretCompany",
+            "location": "France",
+            "description": "Bachelor class students. Had to teach how to be disruptive in the blockchain. Thanks to me, these students can transform IoT and big-data into crypto-flooz"
+        },
+        {
+            "date": "01/2017 - 01/2018",
+            "title": "Job description at Wikipedia",
+            "location": "",
+            "description": "A job description or JD is a document that describes the general tasks, or other related duties, and responsibilities of a position. It may specify the functionary to whom the position reports, specifications such as the qualifications or skills needed by the person in the job, and a salary range."
+        },
+        {
+            "date": "01/2016 - 01/2017",
+            "title": "Job description at Wikipedia",
+            "location": "Nepal",
+            "description": "A job description or JD is a document that describes the general tasks, or other related duties, and responsibilities of a position. It may specify the functionary to whom the position reports, specifications such as the qualifications or skills needed by the person in the job, and a salary range."
+        }
+    ],
+    "education": [
+        {
+            "date": "2014 - now",
+            "description": "MS in Computer Engineering at XXXXXX - Japan"
+        },
+        {
+            "date": "2015",
+            "description": "Graduated in manufacturing crepe"
+        },
+        {
+            "date": "2014",
+            "description": "degree in use of Google Translate for dumb stuff."
+        }
+    ],
+    "languages": [
+        {
+            "name": "Latin",
+            "level": "native"
+        },
+        {
+            "name": "English",
+            "level": "full professional proficiency"
+        },
+        {
+            "name": "Uralic",
+            "level": "basic"
+        }
+    ],
+    "projects": [
+        {
+            "date": "2018",
+            "description": "write this tool"
+        },
+        {
+            "date": "2018",
+            "description": "write this tool, once again, to be sure..."
+        },
+        {
+            "date": "2017",
+            "description": "Written a Hello, World in GO"
+        },
+        {
+            "date": "2016",
+            "description": "Achieved to compile a Hello, World in D"
+        },
+        {
+            "date": "2015",
+            "description": "Built a wooden sword"
+        },
+        {
+            "date": "2014",
+            "description": "Folded a post-it in 8"
+        }
+    ],
+    "hobbies": [
+        "Traveling and eating stuff",
+        "Volonteer in random association for 1 day",
+        "Astronaut by night"
+    ]
+}
