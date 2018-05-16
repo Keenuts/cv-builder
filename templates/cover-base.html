@@ -1,0 +1,50 @@
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link href="{{ info.cwd }}/style.css" rel="stylesheet">
+
+<div class="main" style="padding:1cm;">
+    <h3 style="display:block;">
+        <table style="width:100%;">
+            <tr style="text-align:center;">
+                <th>{{ info.name }}</th>
+                <th>{{ info.mail }}</th>
+                <th>{{ info.phone }}</th>
+                <th>{{ info.country }}</th>
+            </tr>
+        </table>
+    </h3>
+    <hr><br/><br/>
+
+    <center>
+        <h2>Cover letter</h2>
+        {{ info.position }} at {{ info.company }}
+    </center>
+    <br/><br/><br/><br/>
+
+    Dear Hiring Manager at {{ info.company }},<br/><br/>
+
+    <div style="text-indent:50px;">
+        {{ info.blocks.intro }}
+    </div>
+    <br><br>
+
+    <div style="text-indent:50px;">
+        {{ info.blocks.company }}
+    </div>
+    <div style="">
+        {{ info.blocks.experience }}
+    </div>
+    <br><br>
+
+    <div style="text-indent:50px;">
+        {{ info.blocks.conclusion }}
+    </div>
+    <br/><br/>
+
+    <br/><br/>
+    <div style="text-align:right;padding-right:2cm;">
+        Best regards,
+
+        <br/><br/><br/>
+        {{ info.name }}
+    </div>
+</div>

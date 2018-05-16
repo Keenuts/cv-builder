@@ -3,6 +3,7 @@
     "mail": "john@smith.gov.fr",
     "phone": "+33 6 00 00 00 00",
     "country": "France",
+    "company": "Secret Company",
     "position": "SAMPLE POSITION NAME",
     "introduction": "Computer Engineer Student<br>6 month internship from September 2050",
     "websites": [

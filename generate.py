@@ -8,14 +8,28 @@ template_file = None
 content_file = None
 content = None
 
-INFO_FILEPATH    = "info.json"
-TEMPLATE_PREVIEW = "preview-template.html"
-TEMPLATE_PRINT   = "print-template.html"
-TEMPLATE_TEXT    = "text-template.html"
+INFO_FILEPATH            = "info.json"
+COVER_BLOCKS_DIR         = "cover-letter"
 
-OUTPUT_PREVIEW = "build/preview.html"
-OUTPUT_PRINT   = "build/print.html"
-OUTPUT_TEXT   = "build/cv.md"
+TEMPLATE_CV_PREVIEW      = "templates/cv-preview.html"
+TEMPLATE_CV_PRINT        = "templates/cv-print.html"
+TEMPLATE_CV_TEXT         = "templates/cv-text.html"
+
+TEMPLATE_COVER_PREVIEW   = "templates/cover-preview.html"
+TEMPLATE_COVER_PRINT   = "templates/cover-print.html"
+TEMPLATE_COVER_TEXT   = "templates/cover-text.html"
+
+OUTPUT_CV_PREVIEW    = "build/cv-preview.html"
+OUTPUT_CV_PRINT      = "build/cv-print.html"
+OUTPUT_CV_TEXT       = "build/cv-text.md"
+
+OUTPUT_COVER_PREVIEW = "build/cover-preview.html"
+OUTPUT_COVER_PRINT = "build/cover-print.html"
+OUTPUT_COVER_TEXT = "build/cover-text.txt"
+
+COVER_BLOCK_INTRO = "introduction.md"
+COVER_BLOCK_EXPERIENCE = "experience.md"
+COVER_BLOCK_CONCL = "conclusion.md"
 
 def LoadInfo(path):
     try:
@@ -39,11 +53,47 @@ def LoadInfo(path):
                 print("\t %d|\t%s" % (i, lines[i]))
         return None
 
+    info['cwd'] = os.getcwd()
     return info
+
+def LoadBlock(blockpath):
+    try:
+        with open(blockpath) as f:
+            raw = f.read()
+    except (FileNotFoundError, PermissionError) as e:
+        return False, ""
+    return True, raw
+
+def CoverLoadBlocks(path, info):
+    blocks = {}
+
+    companyFile = info['company'].lower().replace(' ', '-') + ".md"
+    if not os.path.isfile(os.path.join(path, companyFile)):
+        companyFile = 'company-generic.md'
+
+    to_load = [
+        ("intro", COVER_BLOCK_INTRO),
+        ("company", companyFile),
+        ("experience", COVER_BLOCK_EXPERIENCE),
+        ("conclusion", COVER_BLOCK_CONCL),
+    ]
+
+    for tl in to_load:
+        res, content = LoadBlock(os.path.join(path, tl[1]))
+        if not res:
+            print("Could not load the block %s. Aborting now." % tl[1])
+        blocks[tl[0]] = content
+
+    return blocks
 
 def CreateFromTemplate(template, info, dest):
     env = Environment(loader=FileSystemLoader(os.getcwd()))
-    template = env.get_template(template)
+
+    try:
+        template = env.get_template(template)
+    except Exception:
+        print("Unable to laod the template %s. Aborting now." % template)
+        exit(1)
     result = template.render(info=info)
 
     try:
@@ -61,7 +111,18 @@ info = LoadInfo(INFO_FILEPATH)
 if info == None:
     exit(1)
 
-CreateFromTemplate(TEMPLATE_PREVIEW, info, OUTPUT_PREVIEW)
-CreateFromTemplate(TEMPLATE_PRINT, info, OUTPUT_PRINT)
-CreateFromTemplate(TEMPLATE_TEXT, info, OUTPUT_TEXT)
+CreateFromTemplate(TEMPLATE_CV_PREVIEW, info, OUTPUT_CV_PREVIEW)
+CreateFromTemplate(TEMPLATE_CV_PRINT,   info, OUTPUT_CV_PRINT)
+CreateFromTemplate(TEMPLATE_CV_TEXT,    info, OUTPUT_CV_TEXT)
+
+blocks = CoverLoadBlocks(COVER_BLOCKS_DIR, info)
+
+info['blocks'] = {}
+for k in blocks:
+    info['blocks'][k] = blocks[k]
+
+CreateFromTemplate(TEMPLATE_COVER_PREVIEW, info, OUTPUT_COVER_PREVIEW)
+CreateFromTemplate(TEMPLATE_COVER_PRINT, info, OUTPUT_COVER_PRINT)
+CreateFromTemplate(TEMPLATE_COVER_TEXT, info, OUTPUT_COVER_TEXT)
+
 print("done at ", datetime.datetime.now().strftime('%H:%M:%S'))

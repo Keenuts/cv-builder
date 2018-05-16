@@ -1,0 +1,18 @@
+
+{{ info.name }}         {{ info.mail }}       {{ info.phone }}        {{ info.country }}
+=========================================================================================
+                     {{ info.position }} at {{ info.company }}
+
+
+
+Dear Hiring Manager at {{ info.company }},
+
+
+    {{ info.blocks.intro }}
+{{ info.blocks.company -}}
+{{ info.blocks.experience }}
+    {{ info.blocks.conclusion }}
+
+                                                        Best regards,
+
+                                                              {{ info.name }}
